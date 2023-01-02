@@ -82,7 +82,7 @@
 \fontdir
 
 % Set the FontAwesome font to be up-to-date.
-\newfontfamily\FA[Path=\@fontdir]{FontAwesome}
+\setfontfamily\FA[Path=\@fontdir]{FontAwesome}
 
 \newfontfamily\bodyfont[
   Path=\@fontdir,
@@ -104,6 +104,7 @@
 
 \RequirePackage{parskip}
 \RequirePackage{enumitem}
+\RequirePackage{changepage}
 
 \newcounter{colorCounter}
 \def\@sectioncolor#1#2#3{%
@@ -133,7 +134,7 @@
 
 \renewcommand{\subsection}[1]{
   \par\vspace{.5\parskip}%
-  {\Large\headingfont\color{headercolor} #1}
+  {\large\headingfont\color{headercolor} #1}
   %\par\vspace{.25\parskip}%
 }
 
@@ -145,7 +146,7 @@
 
 % Change space before list and before each item
 \let\olditemize\itemize
-\def\itemize{\vspace{-\baselineskip}\olditemize[leftmargin=0.25in]}
+\def\itemize{\vspace{-\baselineskip}\olditemize[leftmargin=0.13in]}
 
 
 %%%%%%%%%%
@@ -316,16 +317,23 @@
 
 \renewcommand{\bfseries}{\headingfont\color{headercolor}}
 
-\newcommand{\entry}[4]{%
-  \textbf{#1}\\
-  {\addfontfeature{Color=lightgray} #2} &%
-  {\addfontfeature{Color=lightgray} #3}\\
-  \multicolumn{2}{l}{%
-    \ifthenelse{\isempty{#4}}%
-      {\vspace{-2\parskip}}
-      {\parbox[t]{0.98\textwidth}{\hspace{0.25in}#4\vspace{\parsep}}}
-    }\\
-}
+\ifafourpaper
+  \newcommand{\entry}[4]{%
+  \parbox[t]{2cm}{\hfill#1}&\parbox[t]{11.1cm}{%
+  \textbf{#2}%
+  \hfill%
+  {, \normalsize\addfontfeature{Color=lightgray} \textit{#3}}\\%
+  #4\vspace{\parsep}%
+  }\\}
+\else
+  \newcommand{\entry}[4]{%
+    \parbox[t]{2cm}{\raggedright#1}&\parbox[t]{11.6cm}{%
+    \textbf{#2}%
+    \hfill%
+    {, \normalsize\addfontfeature{Color=lightgray} \textit{#3}}\\%
+    #4\vspace{\parsep}%
+    }\\}
+\fi
 
 \newcommand{\shortentry}[4]{%
   \textbf{#1} & %
@@ -338,8 +346,8 @@
 }
 
 \newcommand{\minientry}[2]{%
-  \parbox[t]{0.13\textwidth}{\hfill\textbf{#1}} & %
-  \parbox[t]{0.86\textwidth}{#2} \\
+  \parbox[t]{2cm}{\raggedright\textbf{#1}} & %
+  \parbox[t]{0.75\textwidth}{#2} \\
 }
 
 

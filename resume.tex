@@ -23,7 +23,7 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[12pt]{friggen-awesome-cv}
+\documentclass[sidebar]{friggen-awesome-cv}
 % Add `a4paper` to set a4 paper size
 % Add `nocolors` to remove colors from the document
 % Add `sidebar` to enable a sidebar section on the left
@@ -37,17 +37,25 @@
 \input{sections/personal.tex}
 
 \begin{document}
+\input{sections/description}
+\vskip 0.1in
+\header{Henri-Louis}{Boisvert}% Your name
 
-\header{Jo\~{a}o}{Moreira}% Your name
-
+\email{hlboisv@gmail.com}  % Keep your email out of public repos to protect it from spammers
+\homepage{boisvert.netlify.app}
+\github{HL-Boisvert}
+\linkedin{henri-louis-boisvert}
 %-------------------------------------------------------------------------------
 %	SIDEBAR SECTION
 %-------------------------------------------------------------------------------
 % If `sidebar` is added in the documentclass definition above, uncomment these
 % lines to allow a sidebar on the left. See template section
-%\begin{aside}
-%\input{sections/skills_aside}
-%\end{aside}
+\begin{aside}
+\input{sections/skills_aside}
+~
+~
+\input{sections/hobbies_aside}
+\end{aside}
 % %
 % % Leave the percent signs to avoid creating a paragraph between minipages
 %
@@ -56,8 +64,9 @@
 %-------------------------------------------------------------------------------
 \begin{main}
 \input{sections/education}
-\input{sections/skills}
+\vskip 0.06in
 \input{sections/experience}
+\input{sections/projects}
 \end{main}
 
 \end{document}
